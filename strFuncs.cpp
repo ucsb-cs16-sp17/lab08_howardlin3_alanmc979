@@ -56,27 +56,24 @@ bool isPalindrome(const string s1){
 }
 
 bool isPalindromeHelper(const char *s1, int len,int i){
-    if (tolower(s1[i])!=tolower(s1[len-1])){
+    if (len==0){
+         return true;
+         }
+    else if (tolower(s1[i])!=tolower(s1[len-1])){
          return false;
          }
     else{
-        len--;
-        i++;
-        return true;
+        return isPalindromeHelper(s1,--len,++i);
         }
 }
 /* Precondition: s1 is a valid C-string that may contain upper or lower case alphabets, no spaces or special characters
  * Postcondition: Returns true if s1 is a palindrome, false otherwise
  *You MUST provide a recursive implementation and are recommended to write a helper function where the recursion actually takes place*/
 bool isPalindrome(const char *s1){
-    int len=strlen(s1);
+    int len=strlen(s1); 
     int i=0;
-    if(len<=0){
-       return 1;
-       }
-    else if(len>0){ 
-       return isPalindromeHelper(s1, len,i);
-       }
+    return isPalindromeHelper(s1, len,i);
+ 
 }
 
 /* Precondition: s1 is a valid C-string that may contain upper or lower case alphabets, no spaces or special characters
